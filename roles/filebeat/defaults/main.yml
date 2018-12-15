@@ -1,6 +1,6 @@
 ---
 # The version of filebeat to install
-filebeat_version: 6.5.1
+filebeat_version: 6.5.3
 base_path: /mnt
 ansible_os_family: RedHat
 
