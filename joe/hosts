@@ -1,0 +1,42 @@
+########################
+# Setup Machines
+########################
+
+es-node-1 ansible_ssh_host=192.168.1.61
+es-node-2 ansible_ssh_host=192.168.1.62
+es-node-3 ansible_ssh_host=192.168.1.63
+kibana-1 ansible_ssh_host=192.168.1.60
+
+########################
+# Machine Groups
+########################
+
+[event-listener]
+es-node-3
+
+[bc-ipfs]
+es-node-2
+
+[logstash]
+es-node-1
+
+[elasticsearch]
+es-node-1
+es-node-2
+es-node-3
+
+[kibana]
+kibana-1
+
+########################
+# Group Alias
+########################
+
+[elastic:children]
+elasticsearch
+kibana
+
+[all:children]
+event-listener
+bc-ipfs
+elastic

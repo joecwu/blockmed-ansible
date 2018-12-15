@@ -1,0 +1,28 @@
+---
+- hosts: bc-ipfs
+  gather_facts: no
+  # pre_tasks:
+  #   - name: Gathering ec2 facts
+  #     action: ec2_metadata_facts
+  #     tags:
+  #       - deploy
+  #       - elb
+  #     when: is_aws_env
+  #   - include_tasks: alb-deregister.yml
+  #     tags:
+  #       - deploy
+  #       - elb
+  roles:
+    - role: common
+    - role: bc-ipfs
+      version: "{{ service_version.bc_ipfs }}"
+  # post_tasks:
+  #   - include_tasks: alb-register.yml
+  #     tags:
+  #       - deploy
+  #       - elb
+  #   - include_tasks: clear-docker-images.yml
+  #     tags:
+  #       - deploy
+  tags: ['bc-ipfs']
+  serial: 1

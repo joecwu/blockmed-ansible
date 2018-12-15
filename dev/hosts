@@ -1,0 +1,35 @@
+########################
+# Setup Machines
+########################
+
+ipfs-secure0 ansible_ssh_host=23.20.35.145 ansible_ssh_user=blocksync832513ipfs
+ipfs-secure1 ansible_ssh_host=100.25.81.192 ansible_ssh_user=blocksync832513ipfs
+
+########################
+# Machine Groups
+########################
+
+[event-listener]
+
+[bc-ipfs]
+ipfs-secure0
+
+[logstash]
+
+[elasticsearch]
+
+[kibana]
+
+
+########################
+# Group Alias
+########################
+
+[elastic:children]
+elasticsearch
+kibana
+
+[all:children]
+event-listener
+bc-ipfs
+elastic

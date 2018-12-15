@@ -1,0 +1,63 @@
+---
+# tasks file for common
+- name: install the epel-release
+  become: true
+  yum:
+    name: epel-release
+    state: present
+  tags:
+    - init
+
+- name: install the python-pip
+  become: true
+  yum:
+    name: python-pip
+    state: present
+  tags:
+    - init
+
+- name: yum install docker
+  become: true
+  yum:
+    name: docker
+    state: present
+  tags:
+    - init
+
+- name: be sure docker is running and enabled
+  become: true
+  service: name=docker state=started enabled=yes
+  tags: 
+    - init
+
+- name: pip install docker-py
+  become: true
+  command: "pip install docker-py"
+  tags:
+    - init
+
+- name: be sure ntp is installed
+  become: true
+  yum: name=ntp state=installed
+  tags: 
+    - ntp
+    - init
+
+- name: be sure ntpd is running and enabled
+  become: true
+  service: name=ntpd state=started enabled=yes
+  tags: 
+    - ntp
+    - init
+
+# - name: copy docker clear scripts
+#   become: true
+#   copy:
+#     src: clear-docker-images.sh
+#     dest: "/mnt/clear-docker-images.sh"
+#     mode: 0755
+#   tags:
+#     - init
+
+#- debug: var=hostvars[inventory_hostname]
+#- debug: var=group_names

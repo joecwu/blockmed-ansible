@@ -1,0 +1,18 @@
+---
+# Generic Variables
+
+docker_registry: joecwu
+
+slack_token: TBD
+
+log_level: debug
+# node_env should be `development` or `production`
+node_env: development
+
+logstash:
+  hosts: 
+    - localhost:5044
+
+service_version:
+  event_listener: 0.5.0
+  bc_ipfs: 0.5.0

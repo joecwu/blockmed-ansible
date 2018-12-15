@@ -1,0 +1,55 @@
+---
+- include_tasks: redhat.yml
+  when: ansible_os_family == 'RedHat'
+
+- include_tasks: debian.yml
+  when: ansible_os_family == 'Debian'
+
+- name: create filebeat.yml
+  become: true
+  template:
+    src: filebeat.yml.j2
+    dest: /etc/filebeat/filebeat.yml
+  notify:
+    - restart filebeat
+
+- name: copy ca certificate if required
+  become: true
+  copy:
+    content: "{{ filebeat_ca_cert }}"
+    dest: "{{ filebeat_ca_path }}"
+    owner: root
+    group: root
+    mode: 0400
+  when: filebeat_ca_cert != None
+
+- name: copy ssl certificate if required
+  become: true
+  copy:
+    content: "{{ filebeat_ssl_cert }}"
+    dest: "{{ filebeat_ssl_cert_path }}"
+    owner: root
+    group: root
+    mode: 0400
+  when: filebeat_ssl_cert != None
+
+- name: copy ssl key if required
+  become: true
+  copy:
+    content: "{{ filebeat_ssl_key }}"
+    dest: "{{ filebeat_ssl_key_path }}"
+    owner: root
+    group: root
+    mode: 0400
+  when: filebeat_ssl_key != None
+
+- name: flush handlers to prevent start then restart
+  become: true
+  meta: flush_handlers
+
+- name: start and enable filebeat
+  become: true
+  service:
+    name: filebeat
+    state: started
+    enabled: true
