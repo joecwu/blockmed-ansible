@@ -4,21 +4,26 @@
 
 ipfs-secure0 ansible_ssh_host=23.20.35.145 ansible_ssh_user=blocksync832513ipfs
 ipfs-secure1 ansible_ssh_host=100.25.81.192 ansible_ssh_user=blocksync832513ipfs
+es-cluster-node0 ansible_ssh_host=34.238.248.31 ansible_ssh_user=centos
 
 ########################
 # Machine Groups
 ########################
 
 [event-listener]
+es-cluster-node0
 
 [bc-ipfs]
 ipfs-secure0
 
 [logstash]
+es-cluster-node0
 
 [elasticsearch]
+es-cluster-node0
 
 [kibana]
+es-cluster-node0
 
 
 ########################
