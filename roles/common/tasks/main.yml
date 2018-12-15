@@ -16,17 +16,38 @@
   tags:
     - init
 
-- name: yum install docker
+- name: "Installing Docker Prerequisite packages"
   become: true
   yum:
-    name: docker
-    state: present
-  tags:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - yum-utils
+    - device-mapper-persistent-data
+    - lvm2
+  tags: 
     - init
 
-- name: be sure docker is running and enabled
-  become: true
-  service: name=docker state=started enabled=yes
+- name: "Configuring docker-ce repo"
+  get_url:
+    url: https://download.docker.com/linux/centos/docker-ce.repo
+    dest: /etc/yum.repos.d/docker-ce.repo
+  mode: 0644
+  tags: 
+    - init
+
+- name: " Installing Docker latest version"
+  yum:
+    name: docker-ce
+    state: present
+  tags: 
+    - init
+
+- name: " Starting and Enabling Docker service"
+  service:
+    name: docker
+    state: started
+    enabled: yes
   tags: 
     - init
 
