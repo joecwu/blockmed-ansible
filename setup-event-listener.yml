@@ -14,7 +14,9 @@
   #       - elb
   roles:
     - role: common
+      tags: ["common"]
     - role: event-listener
+      tags: ["event-listener"]
       version: "{{ service_version.event_listener }}"
   # post_tasks:
   #   - include_tasks: alb-register.yml
