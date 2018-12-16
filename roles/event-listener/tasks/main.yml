@@ -31,8 +31,8 @@
   register: config
   become: true
   template:
-    src: default.json.j2
-    dest: "{{base_path}}/{{service_name}}/config/default.json"
+    src: node_env.json.j2
+    dest: "{{base_path}}/{{service_name}}/config/{{node_env}}.json"
     owner: root
     group: root
     mode: 0644
@@ -51,7 +51,7 @@
     restart_policy: always
     restart: "{{ (config is defined and config.changed) }}"
     volumes:
-      - "{{base_path}}/{{service_name}}/config:/{{service_name}}/config:z"
+      - "{{base_path}}/{{service_name}}/config/{{node_env}}.json:/{{service_name}}/config/{{node_env}}.json:z"
       - "{{base_path}}/{{service_name}}/logs:/{{service_name}}/logs:z"
     env:
       NODE_ENV: "{{node_env}}"
