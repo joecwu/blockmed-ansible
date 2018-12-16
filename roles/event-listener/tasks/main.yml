@@ -9,14 +9,14 @@
 
 # Setup Service Container
 
-# - name: create conf directory
-#   become: true
-#   file: 
-#     path: "{{base_path}}/{{service_name}}/config"
-#     state: directory
-#     mode: 0755
-#   tags:
-#     - init
+- name: create conf directory
+  become: true
+  file: 
+    path: "{{base_path}}/{{service_name}}/config"
+    state: directory
+    mode: 0755
+  tags:
+    - init
 
 - name: create logs directory
   become: true
@@ -26,6 +26,18 @@
     mode: 0755
   tags:
     - init
+
+- name: prepare config file
+  register: config
+  become: true
+  template:
+    src: default.json.j2
+    dest: "{{base_path}}/{{service_name}}/config/default.json"
+    owner: root
+    group: root
+    mode: 0644
+  tags:
+    - deploy
 
 - name: start service container
   become: true
@@ -37,9 +49,9 @@
     networks: 
       - name: blockmed
     restart_policy: always
-    restart: true
+    restart: "{{ (config is defined and config.changed) }}"
     volumes:
-      # - "{{base_path}}/{{service_name}}/conf:/{{service_name}}/conf"
+      - "{{base_path}}/{{service_name}}/config:/{{service_name}}/config:z"
       - "{{base_path}}/{{service_name}}/logs:/{{service_name}}/logs:z"
     env:
       NODE_ENV: "{{node_env}}"
