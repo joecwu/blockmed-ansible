@@ -1,0 +1,10 @@
+---
+- name: Installing Kibana
+  hosts: kibana
+  become: true
+  roles:
+    - geerlingguy.kibana
+  vars:
+    kibana_elasticsearch_url: "localhost:9200"
+    kibana_elasticsearch_username: "admin"
+    kibana_elasticsearch_password: "admin"
