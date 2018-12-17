@@ -1,0 +1,6 @@
+- src: elastic.elasticsearch
+  version: 6.5.1
+- src: geerlingguy.logstash
+  version: 4.0.0
+- src: geerlingguy.kibana
+  version: 3.2.1

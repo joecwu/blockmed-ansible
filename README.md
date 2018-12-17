@@ -16,6 +16,12 @@ make sure Ansible version is above of `2.5.0`
 
 3. install bob & bob3. `pip install boto` `pip install boto3`
 
+### Install Dependencies Roles from Ansible Galaxy
+
+```
+ansible-galaxy install -r requirements.yml
+```
+
 ### All-In-One(including above env setup) with MacOS iTerm2 setup
 
 1. create setup_aws_{env}.sh
@@ -75,7 +81,6 @@ scp_if_ssh = True
 ControlPersist=30m
 control_path = ~/.ssh/ansible-%%r@%%h:%%p
 ```
-
 
 ## Run Example
 
