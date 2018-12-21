@@ -18,7 +18,7 @@ elasticsearch:
     - localhost:9200
 
 ipfs:
-  blockmed_gateway_url: "http://ipfs.blcksync.info:8888/ipfs/"
+  blockmed_gateway_url: "http://ipfs-api.blcksync.info:8888/ipfs/"
   gateway_url: "https://cloudflare-ipfs.com/ipfs/"
 
 ethereum:
