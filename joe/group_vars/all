@@ -23,5 +23,5 @@ ethereum:
   websocket_provider: "wss://ropsten.infura.io/ws"
 
 service_version:
-  event_listener: 0.5.0
+  event_listener: 0.5.1
   bc_ipfs: 0.0.1
