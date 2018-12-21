@@ -101,20 +101,29 @@ dev-a | SUCCESS => {
 ```
 
 
-### Run setup on dev env.
+### Deploy `event-listener` on dev env in first time.
 
 ```
-ansible-playbook -i dev setup.yml -e "ansible_ssh_user=joecwu"
+ansible-playbook -i joe setup-event-listener.yml -e "ansible_ssh_user=root"
 ```
 
-### Run specific setup with specific version on dev env.
+### Deploy `event-listener` on prod env in first time.
 
 ```
-ansible-playbook -i dev setup-brand-backend.yml -e "ansible_ssh_user=joecwu version=1.36.3"
+ansible-playbook -i production setup-event-listener.yml
 ```
-or with All-In-One env setup
+
+
+### Deploy `event-listener` on dev env with upgrade only.
+
 ```
-ansible-playbook setup-brand-backend.yml -e "version=1.36.3"
+ansible-playbook -i joe setup-event-listener.yml -e "ansible_ssh_user=root" --skip-tags "init"
+```
+
+### Deploy `event-listener` on prod env with upgrade only.
+
+```
+ansible-playbook -i production setup-event-listener.yml --skip-tags "init"
 ```
 
 ### Run specific part in playbook using `tags`
