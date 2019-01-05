@@ -14,7 +14,7 @@ logstash:
     - localhost:5044
 
 ipfs:
-  blockmed_gateway_url: "http://ipfs-api-dev.blcksync.info:8888/ipfs/"
+  blockmed_gateway_url: "http://ipfs-api-dev.blcksync.info:8080/ipfs/"
   gateway_url: "https://cloudflare-ipfs.com/ipfs/"
 
 ethereum:
