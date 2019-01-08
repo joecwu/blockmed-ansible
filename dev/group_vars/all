@@ -18,7 +18,7 @@ ipfs:
   gateway_url: "https://cloudflare-ipfs.com/ipfs/"
 
 ethereum:
-  contract:
+  reward_contract:
     address: "0xD722a1651F84241cDaf467F92Fb7d168BF970578"
   websocket_provider: "wss://ropsten.infura.io/ws"
 

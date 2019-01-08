@@ -22,7 +22,7 @@ ipfs:
   gateway_url: "https://cloudflare-ipfs.com/ipfs/"
 
 ethereum:
-  contract:
+  reward_contract:
     address: "0x648279922dd55b22665D7A22685B660626c9FbBF"
   websocket_provider: "wss://mainnet.infura.io/ws"
 
