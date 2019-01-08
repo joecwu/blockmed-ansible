@@ -153,6 +153,16 @@ ansible-playbook setup.yml --limit ms-3
 ```
 
 
+#### encrypt / decrypt vault
+
+```
+ansible-vault decrypt production/group_vars/*/vault
+```
+
+```
+ansible-vault encrypt production/group_vars/*/vault
+```
+
 
 ## Appendix
 

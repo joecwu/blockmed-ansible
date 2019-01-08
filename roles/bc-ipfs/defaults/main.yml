@@ -1,0 +1,10 @@
+---
+# defaults file for brand-backend
+log_level: Info
+version: 0.0.0
+service_name: blockmed-bc-ipfs
+docker_registry: blcksync
+docker_registry_path: /bc-ipfs
+base_path: /mnt
+service_port: 3000
+external_service_port: 3000

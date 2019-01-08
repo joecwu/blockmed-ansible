@@ -5,42 +5,42 @@ slack_token: TBD
 
 log_level: debug
 # node_env should be `development` or `production`
-node_env: development
+node_env: production
 
 logstash:
   hosts: 
-    - 192.168.1.61:5044
+    - localhost:5044
 
 elasticsearch:
   hosts:
     - localhost:9200
   search_url:
-    blockmed_ipfs: "https://es-dev.blcksync.info/blockmed-ipfs/_search/template"
-  authorization: "Basic cmVhZGFsbDpyZWFkYWxs"
+    blockmed_ipfs: "https://es.blcksync.info/blockmed-ipfs/_search/template"
+  authorization: "{{vault_elasticsearch.authorization}}"
 
 ipfs:
-  blockmed_gateway_url: "http://ipfs-api-dev.blcksync.info:8080/ipfs/"
+  blockmed_gateway_url: "http://ipfs-api.blcksync.info:8080/ipfs/"
   gateway_url: "https://cloudflare-ipfs.com/ipfs/"
   api:
-    host: "ipfs-api-dev.blcksync.info"
+    host: "ipfs-api.blcksync.info"
     port: "443"
     protocol: "https"
 
 ethereum:
   reward_contract:
-    address: "0xD722a1651F84241cDaf467F92Fb7d168BF970578"
-    gas_price: 12000000000
-    gas: 1500000
+    address: "0x648279922dd55b22665D7A22685B660626c9FbBF"
+    gas_price: 5500000000
+    gas: 900000
   trading_contract:
-    address: "0xf12bE19b07E60a0351e1060a3e702d75575b1DFd"
-    gas_price: 12000000000
-    gas: 75000
+    address: "0x434d7cAeb4d6332d5b57ab1d44036f49aA321F8C"
+    gas_price: 4000000000
+    gas: 65000
     minimal_fund: 5000000000000000
   token_contract:
-    address: "0xb67e1a2BfDb54f5E30dAD2eF938D1468f37d2e6c"
-    gas_price: 9000000000
+    address: "0xd9a2dc793e1bbce46e2a7e766d7c76fdaf465e48"
+    gas_price: 6000000000
     gas: 300000
-  websocket_provider: "wss://ropsten.infura.io/ws"
+  websocket_provider: "wss://mainnet.infura.io/ws"
 
 desktop_tool: 
   mac: "https://download.blcksync.info/app/Orion-BlockMed/0.9.1/Orion-BlockMed-0.9.1-mac.zip"
