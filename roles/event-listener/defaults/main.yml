@@ -3,5 +3,6 @@
 log_level: Info
 version: 0.0.0
 service_name: blockmed-eth-event-listener
+docker_registry: joecwu
 docker_registry_path: /blockmed-eth-event-listener
 base_path: /mnt

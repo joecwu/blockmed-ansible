@@ -1,0 +1,109 @@
+---
+# Setup Docker Network
+- name: setup docker Network
+  become: true
+  docker_network:
+    name: blockmed
+  tags:
+    - init
+
+# Setup Service Container
+
+- name: create conf directory
+  become: true
+  file: 
+    path: "{{base_path}}/{{service_name}}/config"
+    state: directory
+    mode: 0755
+  tags:
+    - init
+
+- name: create logs directory
+  become: true
+  file: 
+    path: "{{base_path}}/{{service_name}}/logs"
+    state: directory
+    mode: 0755
+  tags:
+    - init
+
+- name: prepare config file
+  register: config
+  become: true
+  template:
+    src: node_env.json.j2
+    dest: "{{base_path}}/{{service_name}}/config/{{node_env}}.json"
+    owner: root
+    group: root
+    mode: 0644
+  tags:
+    - deploy
+
+- name: start service container
+  become: true
+  register: service_container
+  docker_container:
+    name: "{{service_name}}"
+    image: "{{ docker_registry }}{{ docker_registry_path }}:{{ version }}"
+    state: started
+    ports:
+      - "{{external_service_port}}:{{service_port}}"
+    networks: 
+      - name: blockmed
+    restart_policy: always
+    restart: "{{ (config is defined and config.changed) }}"
+    volumes:
+      - "{{base_path}}/{{service_name}}/config/{{node_env}}.json:/{{service_name}}/config/{{node_env}}.json:z"
+      - "{{base_path}}/{{service_name}}/logs:/{{service_name}}/logs:z"
+    env:
+      NODE_ENV: "{{node_env}}"
+  ignore_errors: True
+  tags:
+    - deploy
+
+# - name: send failed notification message via Slack
+#   slack:
+#     token: "{{ slack_token }}"
+#     username: 'Ansible on {{ inventory_hostname }}'
+#     attachments:
+#       - text: "{{service_container.msg}}"
+#         color: danger
+#         title: "deploy {{role_path|basename}} `{{ version }}` on *{{ inventory_hostname }}* failed."
+#         mrkdwn_in:
+#           - title
+#         fields:
+#           - title: "{{role_path|basename}} change detail"
+#             value: "docker: {{service_container is defined and service_container.changed}}"
+#             short: True
+#   delegate_to: localhost
+#   when: (service_container.failed is defined) and service_container.failed
+#   tags:
+#     - deploy
+#     - slack
+
+- name: raise failed if service_container not deployed successfully
+  fail: msg="{{service_container.msg}}"
+  when: (service_container.failed is defined) and service_container.failed
+  tags:
+    - deploy
+
+# - name: send completed notification message via Slack
+#   slack:
+#     token: "{{ slack_token }}"
+#     username: 'Ansible on {{ inventory_hostname }}'
+#     attachments:
+#       - text: "success."
+#         color: good
+#         title: "deploy {{role_path|basename}} `{{ version }}` on *{{ inventory_hostname }}* completed."
+#         mrkdwn_in:
+#           - title
+#           - text
+#         fields:
+#           - title: "{{service_name}} change detail"
+#             value: "docker: {{service_container is defined and service_container.changed}}"
+#             short: True
+#   delegate_to: localhost
+#   when: service_container.changed
+#   tags:
+#     - deploy
+#     - slack

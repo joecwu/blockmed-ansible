@@ -1,0 +1,45 @@
+{
+  "hotjar": {
+    "id": "{{hotjar.id}}",
+    "version": {{hotjar.version}}
+  },
+  "ipfs": {
+    "api": {
+      "host": "{{ipfs.api.host}}",
+      "port": "{{ipfs.api.port}}",
+      "protocol": "{{ipfs.api.protocol}}"
+    },
+    "gateway_url": "{{ipfs.gateway_url}}"
+  },
+  "ethereum": {
+    "reward_contract": {
+      "address": "{{ethereum.reward_contract.address}}",
+      "gasPrice": {{ethereum.reward_contract.gas_price}},
+      "gas": {{ethereum.reward_contract.gas}}
+    },
+    "trading_contract": {
+      "address": "{{ethereum.trading_contract.address}}",
+      "gasPrice": {{ethereum.trading_contract.gas_price}},
+      "gas": {{ethereum.trading_contract.gas}}
+      "minimal_fund": {{ethereum.trading_contract.minimal_fund}}
+    },
+    "token_contract": {
+      "address": "{{ethereum.token_contract.address}}",
+      "gasPrice": {{ethereum.token_contract.gas_price}},
+      "gas": {{ethereum.token_contract.gas}}
+    },
+    "websocket_provider": "{{ethereum.websocket_provider}}"
+  },
+  "es": {
+    "search_url": {
+      "blockmed_ipfs": "{{elasticsearch.search_url.blockmed_ipfs}}"
+    },
+    "authorization": "{{elasticsearch.authorization}}"
+  },
+  "desktop_tool": {
+    "mac": "{{desktop_tool.mac}}",
+    "windows": "{{desktop_tool.windows}}",
+    "rpm": "{{desktop_tool.rpm}}",
+    "deb": "{{desktop_tool.deb}}"
+  }
+}
