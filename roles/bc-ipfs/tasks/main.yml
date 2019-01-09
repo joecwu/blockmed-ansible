@@ -46,6 +46,7 @@
     name: "{{service_name}}"
     image: "{{ docker_registry }}{{ docker_registry_path }}:{{ version }}"
     state: started
+    command: npm start
     ports:
       - "{{external_service_port}}:{{service_port}}"
     networks: 
