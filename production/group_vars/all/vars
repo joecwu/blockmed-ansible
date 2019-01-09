@@ -28,16 +28,16 @@ ipfs:
 
 ethereum:
   reward_contract:
-    address: "0x648279922dd55b22665D7A22685B660626c9FbBF"
+    address: "0x297233d4c11649625ffb26c184d4d47fd48568a1"
     gas_price: 5500000000
     gas: 900000
   trading_contract:
-    address: "0x434d7cAeb4d6332d5b57ab1d44036f49aA321F8C"
+    address: "0x843ae39acff96ef4d1dd1f41f32a942908017882"
     gas_price: 4000000000
     gas: 65000
     minimal_fund: 5000000000000000
   token_contract:
-    address: "0xd9a2dc793e1bbce46e2a7e766d7c76fdaf465e48"
+    address: "0x600dd4636bcbf0fa9c3f95714dcb02602a1ac763"
     gas_price: 6000000000
     gas: 300000
   websocket_provider: "wss://mainnet.infura.io/ws"
