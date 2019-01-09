@@ -50,5 +50,5 @@ desktop_tool:
 
 service_version:
   event_listener: 0.5.2
-  bc_ipfs: 0.5.9
+  bc_ipfs: encryption-v0.5.9
   bc_ipfs_node: 0.0.8
