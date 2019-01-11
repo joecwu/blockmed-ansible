@@ -51,8 +51,8 @@
     restart_policy: always
     restart: "{{ (config is defined and config.changed) }}"
     volumes:
-      - "{{base_path}}/{{service_name}}/config/{{node_env}}.json:/{{service_name}}/config/{{node_env}}.json:z"
-      - "{{base_path}}/{{service_name}}/logs:/{{service_name}}/logs:z"
+      - "{{base_path}}/{{service_name}}/config/{{node_env}}.json:/blockmed-eth-event-listener/config/{{node_env}}.json:z"
+      - "{{base_path}}/{{service_name}}/logs:/blockmed-eth-event-listener/logs:z"
     env:
       NODE_ENV: "{{node_env}}"
   ignore_errors: True
