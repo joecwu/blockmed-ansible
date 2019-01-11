@@ -14,7 +14,7 @@ filebeat_config:
     prospectors:
       - paths:
 # TODO: set paths by each role (need to merge corss role's path issue)
-          - "{{base_path}}/blockmed-eth-event-listener/logs/event-*.log"
+          - "{{base_path}}/blockmed-eth-event-listener*/logs/event-*.log"
         type: log
         json:
           keys_under_root: true
@@ -26,7 +26,7 @@ filebeat_config:
           appName: blockmed-eth-event-listener
       - paths:
 # TODO: set paths by each role (need to merge corss role's path issue)
-          - "{{base_path}}/blockmed-eth-event-listener/logs/ipfs-*.log"
+          - "{{base_path}}/blockmed-eth-event-listener*/logs/ipfs-*.log"
         type: log
         json:
           keys_under_root: true
@@ -38,7 +38,7 @@ filebeat_config:
           appName: blockmed-eth-event-listener
       - paths:
 # TODO: set paths by each role (need to merge corss role's path issue)
-          - "{{base_path}}/blockmed-eth-event-listener/logs/app-*.log"
+          - "{{base_path}}/blockmed-eth-event-listener*/logs/app-*.log"
         type: log
         json:
           keys_under_root: false
