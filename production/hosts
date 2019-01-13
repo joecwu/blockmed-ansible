@@ -4,6 +4,7 @@
 
 ipfs-secure1 ansible_ssh_host=100.25.81.192 ansible_ssh_user=blocksync832513ipfs
 es-cluster-node0 ansible_ssh_host=18.232.237.75 ansible_ssh_user=blocksync168520test
+event-listener2 ansible_ssh_host=18.232.237.75 ansible_ssh_user=blocksync168520test
 
 ########################
 # Machine Groups
@@ -11,6 +12,7 @@ es-cluster-node0 ansible_ssh_host=18.232.237.75 ansible_ssh_user=blocksync168520
 
 [event-listener]
 es-cluster-node0
+event-listener2
 
 [bc-ipfs]
 ipfs-secure1
