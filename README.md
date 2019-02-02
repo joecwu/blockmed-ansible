@@ -43,6 +43,8 @@ export ANSIBLE_CONFIG=~/ansible/ansible_{env}.cfg
 
 ## Run Example
 
+Notes: if you have ansible config with inventory setup, you can ignore `-i {environment}` attribute in the following examples.
+
 ### Ping
 
 test with `ansible all -m ping` and you should get the response below.
