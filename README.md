@@ -24,15 +24,7 @@ ansible-galaxy install -r requirements.yml
 
 ### All-In-One(including above env setup) with MacOS iTerm2 setup
 
-1. create setup_aws_{env}.sh
-```
-#!/bin/sh
-export AWS_ACCESS_KEY_ID=""
-export AWS_SECRET_ACCESS_KEY=""
-export AWS_REGION="ap-northeast-1"
-```
-
-2. create ansible_{env}.cfg
+1. create ansible_{env}.cfg
 ```
 [defaults]
 inventory = ~/devops/ansible/{env}
@@ -42,45 +34,12 @@ remote_user = centos
 private_key_file = ~/.ssh/id_rsa
 ```
 
-3. create new iTerm2 profile with `Send text at start` setup (2 lines)
+2. create new iTerm2 profile with `Send text at start` setup (2 lines)
 ```
-source ~/.scripts/setup-aws-{env}.sh
 export ANSIBLE_CONFIG=~/ansible/ansible_{env}.cfg
 ```
 
-4. now you can open iTerm2 specific env profile and using `ansible` or `ansible-playbook` directly.
-
-### Running Ansible on local machine via SSH proxy without VPN
-
-[reference](https://blog.scottlowe.org/2015/12/24/running-ansible-through-ssh-bastion-host/)
-
-`/Users/joecwu/ansible/ssh_staging.cfg`
-```
-Host 172.16.*.*
-  ProxyCommand ssh -W %h:%p %r@demo-vpn.kiri.tech
-  IdentityFile ~/.ssh/id_rsa
-  User centos
-
-Host demo-vpn.kiri.tech
-  Hostname demo-vpn.kiri.tech
-  User centos
-  IdentityFile ~/.ssh/id_rsa
-  ControlMaster auto
-  ControlPath ~/.ssh/ansible-staging-%r@%h:%p
-  ControlPersist 5m
-```
-
-`ansible_staging.cfg`
-```
-[default]
-....(refer to above setting)....
-
-[ssh_connection]
-ssh_args = -F /Users/joecwu/ansible/ssh_staging.cfg -o ControlMaster=auto
-scp_if_ssh = True
-ControlPersist=30m
-control_path = ~/.ssh/ansible-%%r@%%h:%%p
-```
+3. now you can open iTerm2 specific env profile and using `ansible` or `ansible-playbook` directly.
 
 ## Run Example
 
